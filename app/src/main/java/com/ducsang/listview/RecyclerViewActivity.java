@@ -52,7 +52,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         rvSongs.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         btnAddSong.setOnClickListener(v -> addNewSong());
-
     }
 
     private void addNewSong() {

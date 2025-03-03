@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -64,6 +63,36 @@ public class GridViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(GridViewActivity.this, "Bạn đang chọn vào mục "+position+"-"+arrayList.get(position).getName(),
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        EditText finalEditText = editText1;
+        btnNhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = finalEditText.getText().toString();
+                arrayList.add(new MonHoc(name, "New desc", R.drawable.spring));
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        EditText finalEditText1 = editText1;
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                finalEditText1.setText(arrayList.get(position).getName());
+                vitri = position;
+            }
+        });
+
+
+        EditText finalEditText2 = editText1;
+        btnCapNhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MonHoc monHoc = arrayList.get(vitri);
+                monHoc.setName(finalEditText2.getText().toString());
+                adapter.notifyDataSetChanged();
             }
         });
 

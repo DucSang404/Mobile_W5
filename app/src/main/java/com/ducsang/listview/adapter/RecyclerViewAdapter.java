@@ -25,11 +25,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<Object> songList;
     private int lastPosition = -1; // Biến để kiểm soát animation
 
+    public static class SongViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle, tvLyric, tvArtist, tvCode;
+        ImageView imgSong;
+
+
+        public SongViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvLyric = itemView.findViewById(R.id.tv_lyric);
+            tvArtist = itemView.findViewById(R.id.tv_artist);
+            tvCode = itemView.findViewById(R.id.tv_code);
+            imgSong = itemView.findViewById(R.id.img_song);
+        }
+    }
+
+    // ViewHolder cho header
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+        TextView tvHeader;
+
+        public HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvHeader = itemView.findViewById(R.id.tv_header);
+        }
+    }
+
     public RecyclerViewAdapter(Context context, List<Object> songList) {
         this.context = context;
         this.songList = songList;
     }
 
+    // Xác định kiểu item tại vị trí position
     @Override
     public int getItemViewType(int position) {
         if (songList.get(position) instanceof BaiHat) {
@@ -52,6 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof SongViewHolder) {
             BaiHat song = (BaiHat) songList.get(position);
             SongViewHolder songHolder = (SongViewHolder) holder;
@@ -97,30 +124,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public static class SongViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvLyric, tvArtist, tvCode;
-        ImageView imgSong;
-
-
-        public SongViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvTitle = itemView.findViewById(R.id.tv_title);
-            tvLyric = itemView.findViewById(R.id.tv_lyric);
-            tvArtist = itemView.findViewById(R.id.tv_artist);
-            tvCode = itemView.findViewById(R.id.tv_code);
-            imgSong = itemView.findViewById(R.id.img_song);
-        }
-    }
-
-    // ViewHolder cho header
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        TextView tvHeader;
-
-        public HeaderViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvHeader = itemView.findViewById(R.id.tv_header);
-        }
-    }
 
     // Áp dụng animation cho item
     private void setAnimation(View view, int position) {

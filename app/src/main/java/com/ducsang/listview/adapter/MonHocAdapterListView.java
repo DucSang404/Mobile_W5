@@ -45,7 +45,6 @@ public class MonHocAdapterListView extends BaseAdapter {
         return 0;
     }
 
-    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder viewHolder;
